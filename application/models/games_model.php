@@ -7,4 +7,25 @@ class games_model extends CI_Model{
         return $this->db->get('tb_games')->result_array();
 
     }
+
+    public function store($game){
+        $this->db->insert("tb_games", $game);
+    }
+
+    public function show($id){
+
+        return $this->db->get_where("tb_games", array(
+           "id" => $id
+        ))->row_array();
+    }
+
+    public function update($id, $game){
+
+        //construindo a query
+        //onde id == $id
+        $this->db->where('id', $id);
+        //as duas linhas formam a mesma query
+        return $this->db->update("tb_games", $game);
+    }
+
 }

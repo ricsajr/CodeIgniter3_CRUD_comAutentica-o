@@ -28,4 +28,41 @@ class Games extends CI_Controller{
         $this->load->view('templates/js', $data);
     }
 
+    public function store(){
+
+        $game = $_POST;
+        $this->load->model("games_model");
+        $this->games_model->store($game);
+        redirect(base_url().'games');
+
+    }
+
+    public function edit($id){
+
+        //o que vem depois de edit/ na url, será recebido como parâmetro
+        //chamar a model e utilizar o método index;
+        $this->load->model("games_model");
+        //depois da model carregada, chamamos o método desejado
+        $data["game"] =  $this->games_model->show($id);
+        $data["title"] = 'Editar Game - CodeIgniter';
+
+
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/nav-top', $data);
+        $this->load->view('pages/form-games', $data);
+        $this->load->view('templates/footer', $data);
+        $this->load->view('templates/js', $data);
+
+    }
+
+    public function update($id){
+
+        $this->load->model('games_model');
+        $game = $_POST;
+        $this->games_model->update($id, $game);
+        redirect('games');
+
+    }
+
 }
