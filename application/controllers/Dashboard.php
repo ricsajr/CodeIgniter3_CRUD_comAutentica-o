@@ -12,6 +12,9 @@ class Dashboard extends CI_Controller {
         $data["games"] =  $this->games_model->index();
         $data["title"] = 'Dashboard - CodeIgniter';
 
+        $this->load->library('session');
+        print_r($this->session->userdata());
+        die();
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/nav-top', $data);

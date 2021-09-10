@@ -1,15 +1,19 @@
 <?php
 
 class Games extends CI_Controller{
+    
+    public function __construct() {
+        parent::__construct();
+        $this->load->model("games_model");
+    }
 
     public function index(){
 
         //chamar a model e utilizar o método index;
-        $this->load->model("games_model");
+        
         //depois da model carregada, chamamos o método desejado
         $data["games"] =  $this->games_model->index();
         $data["title"] = 'Games - CodeIgniter';
-
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/nav-top', $data);
@@ -31,7 +35,6 @@ class Games extends CI_Controller{
     public function store(){
 
         $game = $_POST;
-        $this->load->model("games_model");
         $this->games_model->store($game);
         redirect(base_url().'games');
 
@@ -41,12 +44,10 @@ class Games extends CI_Controller{
 
         //o que vem depois de edit/ na url, será recebido como parâmetro
         //chamar a model e utilizar o método index;
-        $this->load->model("games_model");
+        
         //depois da model carregada, chamamos o método desejado
         $data["game"] =  $this->games_model->show($id);
         $data["title"] = 'Editar Game - CodeIgniter';
-
-
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/nav-top', $data);
@@ -57,8 +58,6 @@ class Games extends CI_Controller{
     }
 
     public function update($id){
-
-        $this->load->model('games_model');
         $game = $_POST;
         $this->games_model->update($id, $game);
         redirect('games');
@@ -66,8 +65,6 @@ class Games extends CI_Controller{
     }
 
     public function delete($id){
-
-        $this->load->model('games_model');
         $this->games_model->destroy($id);
         redirect("games");
 
