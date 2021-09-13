@@ -21,10 +21,29 @@ class Dashboard extends CI_Controller {
 
             $config = array(
                 "base_url" => base_url('dashboard/p'),
-                "per_page" => 2,
-                "num_links" => 3,
-                "uri_segment" => 3,
+                "per_page" => 2, // numero de games por pagina
+                "num_links" => 3, // tamanho do grupo de paginas
+                "uri_segment" => 3,//posição na url
                 "total_rows" => $this->games_model->countAll(),
+                "full_tag_open" => "<ul class='pagination'>",
+                "full_tag_close" => "</ul>",
+                "first_link" => FALSE,
+                "last_link" => FALSE,
+                "first_tag_open" => "<li>",
+                "first_tag_close" => "</li>",
+                "prev_link" => "Anterior",
+                "prev_tag_open" => "<li class='prev'>",
+                "prev_tag_close" => "</li>",
+                "next_link" => "Próxima",
+                "next_tag_open" => "<li class='next'>",
+                "next_tag_close" => "</li>",
+                "last_tag_open" => "<li>",
+                "last_tag_close" => "</li>",
+                "cur_tag_open" => "<li class='active'><a href='#'>",
+                "cur_tag_close" => "</a></li>",
+                "num_tag_open" => "<li>",
+                "num_tag_close" => "</li>",
+
              );
 
             $this->pagination->initialize($config);

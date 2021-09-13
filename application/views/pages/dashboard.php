@@ -3,7 +3,7 @@
                         <h1 class="h2">Dashboard</h1>
                         <div class="btn-toolbar mb-2 mb-md-0">
                             <div class="btn-group mr-2">
-                                <a href="" class="btn btn-sm btn-outline-secondary"><i class="fas fa-plus-square"></i> Game</a>
+                                <a href="<?= base_url().'games/new'?>" class="btn btn-sm btn-outline-secondary"><i class="fas fa-plus-square"></i> Game</a>
                             </div>
                         </div>
                     </div>
@@ -35,9 +35,12 @@
                                         <td>xxxx</td>
                                     </tr>
                                 <?php endforeach; ?>
-                            <?php echo $pagination ?>
                             </tbody>
                         </table>
+                        <div>
+                            <?php echo $pagination ?>
+                        </div>
+
                     </div>
 
                     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
