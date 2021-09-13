@@ -21,17 +21,22 @@ class Login extends CI_Controller {
 
         if($user){
 
-            $this->session->set_userdata("logged_user", $user);
-
-
+            session_start();
+            $_SESSION['user'] = $user;
 
             redirect("dashboard");
         }
         else{
             redirect("login");
         }
+    }
+
+    public function logout(){
 
     }
+
+
+
 
 
 
