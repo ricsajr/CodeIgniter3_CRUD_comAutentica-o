@@ -43,6 +43,7 @@
   <input type="email" name="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
   <label for="inputPassword" class="sr-only">Password</label>
   <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
+        <span><?php echo isset($msg) ? $msg : '' ?></span>
   <div class="checkbox mb-3">
     <label>
       <input type="checkbox" value="remember-me"> Remember me
