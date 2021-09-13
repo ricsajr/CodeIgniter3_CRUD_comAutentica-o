@@ -2,7 +2,11 @@
 
 class Games_model extends CI_Model{
 
-    public function index(){
+    public function index($limit = null, $offset = null){
+
+        if($limit){
+            $this->db->limit($limit, $offset);//limit é um método da lib pagination;
+        }
 
         return $this->db->get('tb_games')->result_array();
 
@@ -35,4 +39,7 @@ class Games_model extends CI_Model{
 
     }
 
+    public function countAll(){
+        return $this->db->count_all('tb_games');
+    }
 }

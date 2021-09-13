@@ -35,6 +35,7 @@
                                         <td>xxxx</td>
                                     </tr>
                                 <?php endforeach; ?>
+                            <?php echo $pagination ?>
                             </tbody>
                         </table>
                     </div>

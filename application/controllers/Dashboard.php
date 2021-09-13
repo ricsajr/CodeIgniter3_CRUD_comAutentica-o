@@ -18,8 +18,22 @@ class Dashboard extends CI_Controller {
         else{
             //chamar a model e utilizar o método index;
             $this->load->model("games_model");
+
+            $config = array(
+                "base_url" => base_url('dashboard/p'),
+                "per_page" => 2,
+                "num_links" => 3,
+                "uri_segment" => 3,
+                "total_rows" => $this->games_model->countAll(),
+             );
+
+            $this->pagination->initialize($config);
+
+            $data["pagination"] = $this->pagination->create_links();
+
             //depois da model carregada, chamamos o método desejado
-            $data["games"] =  $this->games_model->index();
+            $offset = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
+            $data["games"] =  $this->games_model->index($config["per_page"], $offset);
             $data["title"] = 'Dashboard - CodeIgniter';
 
             $this->load->view('templates/header', $data);
