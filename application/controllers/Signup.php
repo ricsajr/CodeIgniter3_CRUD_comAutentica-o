@@ -25,8 +25,25 @@ class Signup extends CI_Controller {
             "password" => md5($_POST["password"])
         );
 
-        $this->users_model->store($user);
-        redirect("login");
+       /* $this->users_model->store($user);
+        $this->load->library('email');
+
+        $configs['mailtype'] = 'html';
+
+        $this->email->initialize($configs);
+
+        $this->email->from('ricardosantosaraujojunior@gmail.com', 'Ricardo Araújo');
+        $this->email->to('ricardo.araujo@neki-it.com.br');
+
+
+        $this->email->subject('Teste envio de email CodeIgniter');
+        $this->email->message('Easy peasy lemon squeezy');
+
+        //$this->email->send()*/
+
+            redirect("login");
+
+
     }
 
 
