@@ -73,7 +73,13 @@ class Users extends CI_Controller {
         //chamar a model e utilizar o método index;
 
         //depois da model carregada, chamamos o método desejado
-        $data["user"] = $this->users_model->findById($id);
+        $user = $this->users_model->findById($id);
+        $data['id'] = $user['id'];
+        $data['name'] = $user['name'];
+        $data['email'] = $user['email'];
+        $data['country'] = $user['country'];
+
+
         $data["title"] = 'Editar Usuario - CodeIgniter';
 
         $this->load->view('templates/header', $data);
@@ -87,9 +93,40 @@ class Users extends CI_Controller {
 
     public function update($id){
         // resolver problema da senha
+        $preuser = $this->users_model->findById($id);
+
         $user = $_POST;
-        $this->users_model->update($id,$user);
-        redirect('users');
+       // $user['id'] = $id;
+        $user['password'] = $preuser['password'];
+
+        if($this->users_model->atualiza($id,$user)){
+            $data["users"] =  $this->users_model->findAll();
+            $data["title"] = 'Usuários - CodeIgniter';
+            $data["msg"] = 'Usuário alterado com sucesso!';
+
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/nav-top', $data);
+            $this->load->view('pages/users', $data);
+            $this->load->view('templates/footer', $data);
+            $this->load->view('templates/js', $data);
+        }else{
+            $data["users"] =  $this->users_model->findAll();
+            $data["title"] = 'Usuários - CodeIgniter';
+            $data["msg"] = 'Erro ao alterar usuário.';
+
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/nav-top', $data);
+            $this->load->view('pages/users', $data);
+            $this->load->view('templates/footer', $data);
+            $this->load->view('templates/js', $data);
+        }
+
+
+    }
+
+    public function delete($id){
+        $this->users_model->destroy($id);
+        redirect("users");
     }
 
 

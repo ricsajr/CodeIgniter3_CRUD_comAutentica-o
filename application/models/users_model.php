@@ -18,5 +18,17 @@ class Users_model extends CI_Model {
 
     }
 
+    public function atualiza($id,$user){
+        $this->db->where('id',$id);
+        return $this->db->update("tb_users", $user);
+    }
+
+    public function destroy($id){
+
+        $this->db->where('id', $id);
+        return $this->db->delete('tb_users');
+
+    }
+
 
 }

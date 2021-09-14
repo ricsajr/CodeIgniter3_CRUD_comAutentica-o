@@ -14,29 +14,29 @@
     </div>
 
     <div class="col-md-12">
-        <?php if(isset($user)) : ?>
-            <form action="<?= base_url().'users/update/'.$user['id'] ?>" method="post">
+        <?php if(isset($id)) : ?>
+            <form action="<?= base_url().'users/update/'.$id ?>" method="post">
         <?php else : ?>
             <form action="<?= base_url().'users/store/'?>" method="post">
         <?php endif; ?>
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="name">Nome</label>
-                    <input type="text" class="form-control" name="name" id="name" placeholder="Name" value="<?= isset($user) ? $user['name'] : ''?>">
+                    <input type="text" class="form-control" name="name" id="name" placeholder="Name" value="<?= isset($name) ? $name : ''?>">
                 </div>
             </div>
 
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="email">Email</label>
-                    <input name="email" id="email" rows="5" class="form-control" placeholder="Email" value="<?= isset($user) ? $user['email'] : ''?>"/>
+                    <input name="email" id="email" rows="5" class="form-control" placeholder="Email" value="<?= isset($email) ? $email : ''?>"/>
                 </div>
             </div>
 
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="country">País</label>
-                    <input type="text" class="form-control" name="country" id="country" placeholder="País" value="<?= isset($user) ? $user['country'] : ''?>">
+                    <input type="text" class="form-control" name="country" id="country" placeholder="País" value="<?= isset($country) ? $country : ''?>">
                 </div>
             </div>
             <div class="col-md-6">

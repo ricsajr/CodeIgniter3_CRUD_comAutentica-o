@@ -33,8 +33,21 @@
                 <?php endforeach; ?>
             </tbody>
         </table>
+        <?= isset($msg) ? $msg : ''; ?>
     </div>
 </main>
+<script>
+    function goDelete(id){
+        var myUrl = 'users/delete/'+id
+        if(confirm("Deseja realmente apagar este registro?")){
+            window.location.href = myUrl;
+        }
+        else{
+            alert("Registro não alterado");
+            return false;
+        }
+    }
+</script>
 
 
 
